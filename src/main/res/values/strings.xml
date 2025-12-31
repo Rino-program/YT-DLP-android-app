@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">yt-dlp ダウンローダー</string>
+    <string name="download_url">ダウンロード対象URL</string>
+    <string name="format">形式</string>
+    <string name="output_path">出力フォルダ</string>
+    <string name="start_download">ダウンロード開始</string>
+    <string name="downloading">ダウンロード中...</string>
+    <string name="error">エラー</string>
+    <string name="success">成功</string>
+</resources>

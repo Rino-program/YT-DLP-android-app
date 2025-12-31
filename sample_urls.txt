@@ -1,0 +1,21 @@
+# yt-dlp ダウンローダー - バッチ処理用URLサンプル
+# このファイルのフォーマット:
+# - 1行に1つのURL
+# - #で始まる行はコメント
+# - 空行は無視される
+# - YouTubeのプレイリストURL、またはプレイリストに含まれる動画URL
+
+# YouTube動画の例
+# https://www.youtube.com/watch?v=dQw4w9WgXcQ
+# https://www.youtube.com/watch?v=jNQXAC9IVRw
+
+# YouTubeプレイリストの例（1つのプレイリストURL = 複数の動画を自動処理）
+# https://www.youtube.com/playlist?list=PLrAXtmErZgOeiKm4sgNOknGvNjby9efdf
+
+# Twitter/X動画の例
+# https://twitter.com/TwitterDev/status/1234567890123456789
+
+# 他のサイト
+# https://www.bilibili.com/video/BV1234567890
+
+# 注意: 実際に使用する際は、有効なURLに置き換えてください。

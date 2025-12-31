@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+*.apk
+*.aar
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local properties
+local.properties
+
+# Environment
+.env
+
+# Build artifacts
+bin/
+gen/
+out/
+
+# Kotlin
+.kotlin/
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+
+# Android Studio specific files
+.Android/

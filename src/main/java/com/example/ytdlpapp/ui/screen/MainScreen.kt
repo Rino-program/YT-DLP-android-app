@@ -1,275 +1,326 @@
 package com.example.ytdlpapp.ui.screen
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import com.example.ytdlpapp.ui.viewmodel.MainUiState
-import com.example.ytdlpapp.ui.viewmodel.MainViewModel
+import androidx.compose.ui.unit.sp
+import com.example.ytdlpapp.core.BinaryManager
+import com.example.ytdlpapp.core.DownloadManager
+import com.example.ytdlpapp.model.DownloadOptions
+import com.example.ytdlpapp.model.DownloadState
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    viewModel: MainViewModel,
-    onSettingsClick: () -> Unit,
-    onBinaryManagerClick: () -> Unit,
-    onBatchProcessingClick: () -> Unit,
-    onStatisticsClick: () -> Unit
+    binaryManager: BinaryManager,
+    downloadManager: DownloadManager
 ) {
-    val uiState by viewModel.uiState.collectAsState()
-    var ytdlpOptions by remember { mutableStateOf("") }
-    var ffmpegOptions by remember { mutableStateOf("") }
+    val scope = rememberCoroutineScope()
+    
+    // State
+    var url by remember { mutableStateOf("") }
+    var audioOnly by remember { mutableStateOf(false) }
+    var showBinaryDialog by remember { mutableStateOf(false) }
+    var showLogDialog by remember { mutableStateOf(false) }
+    
+    val ytdlpState by binaryManager.ytdlpState.collectAsState()
+    val ffmpegState by binaryManager.ffmpegState.collectAsState()
+    val downloadState by downloadManager.downloadState.collectAsState()
+    val logOutput by downloadManager.logOutput.collectAsState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("yt-dlp ダウンローダー") },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                actions = {
+                    // バイナリ管理ボタン
+                    IconButton(onClick = { showBinaryDialog = true }) {
+                        Icon(
+                            Icons.Default.Settings,
+                            contentDescription = "バイナリ管理",
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                }
+            )
+        }
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            // バイナリ状態表示
+            BinaryStatusCard(
+                ytdlpInstalled = ytdlpState.isInstalled,
+                ffmpegInstalled = ffmpegState.isInstalled,
+                onSetupClick = { showBinaryDialog = true }
+            )
+
+            // URL入力
+            OutlinedTextField(
+                value = url,
+                onValueChange = { url = it },
+                label = { Text("ダウンロードURL") },
+                placeholder = { Text("https://www.youtube.com/watch?v=...") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                leadingIcon = { Icon(Icons.Default.Link, contentDescription = null) },
+                trailingIcon = {
+                    if (url.isNotEmpty()) {
+                        IconButton(onClick = { url = "" }) {
+                            Icon(Icons.Default.Clear, contentDescription = "クリア")
+                        }
+                    }
+                }
+            )
+
+            // オプション
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Checkbox(
+                    checked = audioOnly,
+                    onCheckedChange = { audioOnly = it }
+                )
+                Text("音声のみ（MP3）")
+            }
+
+            // ダウンロードボタン
+            Button(
+                onClick = {
+                    if (url.isNotBlank()) {
+                        scope.launch {
+                            downloadManager.download(
+                                url = url.trim(),
+                                options = DownloadOptions(audioOnly = audioOnly)
+                            )
+                        }
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(),
+                enabled = url.isNotBlank() && 
+                         ytdlpState.isInstalled && 
+                         downloadState !is DownloadState.Downloading &&
+                         downloadState !is DownloadState.Processing
+            ) {
+                Icon(Icons.Default.Download, contentDescription = null)
+                Spacer(Modifier.width(8.dp))
+                Text("ダウンロード開始")
+            }
+
+            // 進捗表示
+            DownloadProgress(
+                state = downloadState,
+                onCancel = { downloadManager.cancel() },
+                onReset = { downloadManager.reset() },
+                onShowLog = { showLogDialog = true }
+            )
+        }
+    }
+
+    // バイナリ管理ダイアログ
+    if (showBinaryDialog) {
+        BinaryManagerDialog(
+            binaryManager = binaryManager,
+            onDismiss = { showBinaryDialog = false }
+        )
+    }
+
+    // ログダイアログ
+    if (showLogDialog) {
+        LogDialog(
+            log = logOutput,
+            onDismiss = { showLogDialog = false }
+        )
+    }
+}
+
+@Composable
+private fun BinaryStatusCard(
+    ytdlpInstalled: Boolean,
+    ffmpegInstalled: Boolean,
+    onSetupClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = if (ytdlpInstalled) 
+                MaterialTheme.colorScheme.secondaryContainer 
+            else 
+                MaterialTheme.colorScheme.errorContainer
+        )
     ) {
-        // ヘッダー
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 16.dp),
+                .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "yt-dlp ダウンローダー",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.weight(1f)
-            )
-            IconButton(onClick = onStatisticsClick) {
-                Icon(
-                    imageVector = Icons.Default.Download,
-                    contentDescription = "統計"
-                )
+            Column(modifier = Modifier.weight(1f)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        if (ytdlpInstalled) Icons.Default.CheckCircle else Icons.Default.Error,
+                        contentDescription = null,
+                        tint = if (ytdlpInstalled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text("yt-dlp: ${if (ytdlpInstalled) "インストール済み" else "未インストール"}")
+                }
+                Spacer(Modifier.height(4.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        if (ffmpegInstalled) Icons.Default.CheckCircle else Icons.Default.Warning,
+                        contentDescription = null,
+                        tint = if (ffmpegInstalled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiary
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text("FFmpeg: ${if (ffmpegInstalled) "インストール済み" else "未インストール（オプション）"}")
+                }
             }
-            IconButton(onClick = onBatchProcessingClick) {
-                Icon(
-                    imageVector = Icons.Default.Download,
-                    contentDescription = "バッチ処理"
-                )
-            }
-            IconButton(onClick = onBinaryManagerClick) {
-                Icon(
-                    imageVector = Icons.Default.Download,
-                    contentDescription = "バイナリ管理"
-                )
-            }
-            IconButton(onClick = onSettingsClick) {
-                Icon(
-                    imageVector = Icons.Default.Settings,
-                    contentDescription = "設定"
-                )
+            
+            if (!ytdlpInstalled) {
+                FilledTonalButton(onClick = onSetupClick) {
+                    Text("セットアップ")
+                }
             }
         }
+    }
+}
 
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            item {
-                // エラーメッセージ
-                if (uiState.errorMessage != null) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 16.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.errorContainer
-                        )
-                    ) {
-                        Text(
-                            text = "✗ ${uiState.errorMessage}",
-                            modifier = Modifier.padding(16.dp),
-                            color = MaterialTheme.colorScheme.error
-                        )
-                    }
-                }
-
-                // URL入力
-                Text(
-                    text = "ダウンロード対象 URL",
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                OutlinedTextField(
-                    value = uiState.url,
-                    onValueChange = { viewModel.setUrl(it) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    placeholder = { Text("https://www.youtube.com/watch?v=...") },
-                    singleLine = true,
-                    enabled = !uiState.isDownloading
-                )
-
-                // フォーマット選択
-                Text(
-                    text = "形式",
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                OutlinedTextField(
-                    value = uiState.format,
-                    onValueChange = { viewModel.setFormat(it) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    placeholder = { Text("best (best/worst/bestvideo など)") },
-                    singleLine = true,
-                    enabled = !uiState.isDownloading
-                )
-
-                // 出力先
-                Text(
-                    text = "出力フォルダ",
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                OutlinedTextField(
-                    value = uiState.outputPath,
-                    onValueChange = { viewModel.setOutputPath(it) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    placeholder = { Text("/storage/emulated/0/Downloads") },
-                    singleLine = true,
-                    enabled = !uiState.isDownloading
-                )
-
-                // yt-dlpオプション
-                Text(
-                    text = "yt-dlp オプション (空白区切り)",
-                    style = MaterialTheme.typography.labelSmall,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                OutlinedTextField(
-                    value = ytdlpOptions,
-                    onValueChange = { ytdlpOptions = it },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp)
-                        .height(80.dp),
-                    placeholder = { Text("-x --audio-format mp3 --audio-quality 192K") },
-                    enabled = !uiState.isDownloading
-                )
-
-                // ffmpegオプション
-                Text(
-                    text = "ffmpeg オプション",
-                    style = MaterialTheme.typography.labelSmall,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                OutlinedTextField(
-                    value = ffmpegOptions,
-                    onValueChange = { ffmpegOptions = it },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp)
-                        .height(80.dp),
-                    placeholder = { Text("-c:v libx264 -preset fast") },
-                    enabled = !uiState.isDownloading
-                )
-
-                // ダウンロードボタン
-                Button(
-                    onClick = {
-                        viewModel.startDownload(ytdlpOptions, ffmpegOptions)
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 16.dp)
-                        .height(48.dp),
-                    enabled = !uiState.isDownloading
-                ) {
-                    if (uiState.isDownloading) {
-                        Text("ダウンロード中...")
-                    } else {
-                        Text("ダウンロード開始")
-                    }
-                }
-
-                // プログレス表示
-                if (uiState.currentDownload != null) {
-                    val currentDownload = uiState.currentDownload
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp)
-                    ) {
-                        Column(modifier = Modifier.padding(16.dp)) {
-                            Text(
-                                text = "進捗: ${currentDownload?.progress ?: 0}%",
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            // プログレスバー実装は省略
-                        }
-                    }
-                }
-
-                // ログ表示
-                Text(
-                    text = "実行ログ",
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier.padding(top = 16.dp)
-                )
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp)
-                ) {
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(150.dp)
-                            .padding(8.dp)
-                    ) {
-                        items(uiState.logs) { log ->
-                            Text(
-                                text = log,
-                                style = MaterialTheme.typography.labelSmall,
-                                fontFamily = FontFamily.Monospace,
-                                modifier = Modifier.padding(4.dp)
-                            )
-                        }
-                    }
-                }
-
-                // ダウンロード履歴
-                if (uiState.downloadHistory.isNotEmpty()) {
+@Composable
+private fun DownloadProgress(
+    state: DownloadState,
+    onCancel: () -> Unit,
+    onReset: () -> Unit,
+    onShowLog: () -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            when (state) {
+                is DownloadState.Idle -> {
                     Text(
-                        text = "ダウンロード履歴",
-                        style = MaterialTheme.typography.labelLarge,
-                        modifier = Modifier.padding(top = 16.dp)
+                        "URLを入力してダウンロードを開始",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    LazyColumn {
-                        items(uiState.downloadHistory) { item ->
-                            DownloadHistoryItem(item)
+                }
+                
+                is DownloadState.Downloading -> {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("ダウンロード中... ${state.progress}%")
+                            if (state.speed.isNotEmpty()) {
+                                Text(
+                                    "速度: ${state.speed}  残り: ${state.eta}",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                        IconButton(onClick = onCancel) {
+                            Icon(Icons.Default.Close, contentDescription = "キャンセル")
+                        }
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    LinearProgressIndicator(
+                        progress = state.progress / 100f,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+                
+                is DownloadState.Processing -> {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                        Spacer(Modifier.width(12.dp))
+                        Text(state.message)
+                    }
+                }
+                
+                is DownloadState.Completed -> {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(
+                            Icons.Default.CheckCircle,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("ダウンロード完了！")
+                            Text(
+                                state.filePath,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    Row {
+                        TextButton(onClick = onShowLog) {
+                            Icon(Icons.Default.Description, contentDescription = null)
+                            Spacer(Modifier.width(4.dp))
+                            Text("ログ表示")
+                        }
+                        TextButton(onClick = onReset) {
+                            Text("閉じる")
+                        }
+                    }
+                }
+                
+                is DownloadState.Error -> {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(
+                            Icons.Default.Error,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.error
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            state.message,
+                            color = MaterialTheme.colorScheme.error,
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    Row {
+                        TextButton(onClick = onShowLog) {
+                            Icon(Icons.Default.Description, contentDescription = null)
+                            Spacer(Modifier.width(4.dp))
+                            Text("ログ表示")
+                        }
+                        TextButton(onClick = onReset) {
+                            Text("閉じる")
                         }
                     }
                 }
@@ -279,28 +330,142 @@ fun MainScreen(
 }
 
 @Composable
-fun DownloadHistoryItem(downloadInfo: com.example.ytdlpapp.domain.model.DownloadInfo) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp)
-    ) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Text(
-                text = downloadInfo.title.ifEmpty { downloadInfo.url },
-                style = MaterialTheme.typography.bodyMedium
-            )
-            Text(
-                text = "状態: ${downloadInfo.status.name} (${downloadInfo.progress}%)",
-                style = MaterialTheme.typography.labelSmall
-            )
-            if (downloadInfo.errorMessage != null) {
-                Text(
-                    text = "エラー: ${downloadInfo.errorMessage}",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.error
+private fun BinaryManagerDialog(
+    binaryManager: BinaryManager,
+    onDismiss: () -> Unit
+) {
+    val scope = rememberCoroutineScope()
+    val ytdlpState by binaryManager.ytdlpState.collectAsState()
+    val ffmpegState by binaryManager.ffmpegState.collectAsState()
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("バイナリ管理") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                // yt-dlp
+                BinaryItem(
+                    name = "yt-dlp",
+                    description = "動画ダウンローダー（必須）",
+                    isInstalled = ytdlpState.isInstalled,
+                    isDownloading = ytdlpState.isDownloading,
+                    progress = ytdlpState.progress,
+                    error = ytdlpState.error,
+                    onInstall = { scope.launch { binaryManager.installYtdlp() } },
+                    onUninstall = { binaryManager.uninstallYtdlp() }
+                )
+
+                Divider()
+
+                // FFmpeg
+                BinaryItem(
+                    name = "FFmpeg",
+                    description = "音声抽出・動画変換（オプション）",
+                    isInstalled = ffmpegState.isInstalled,
+                    isDownloading = ffmpegState.isDownloading,
+                    progress = ffmpegState.progress,
+                    error = ffmpegState.error,
+                    onInstall = { scope.launch { binaryManager.installFfmpeg() } },
+                    onUninstall = { binaryManager.uninstallFfmpeg() }
                 )
             }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text("閉じる")
+            }
+        }
+    )
+}
+
+@Composable
+private fun BinaryItem(
+    name: String,
+    description: String,
+    isInstalled: Boolean,
+    isDownloading: Boolean,
+    progress: Int,
+    error: String?,
+    onInstall: () -> Unit,
+    onUninstall: () -> Unit
+) {
+    Column {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(name, style = MaterialTheme.typography.titleMedium)
+                Text(
+                    description,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            
+            when {
+                isDownloading -> {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                        Text("$progress%", style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+                isInstalled -> {
+                    Row {
+                        Icon(
+                            Icons.Default.CheckCircle,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        TextButton(onClick = onUninstall) {
+                            Text("削除")
+                        }
+                    }
+                }
+                else -> {
+                    Button(onClick = onInstall) {
+                        Text("インストール")
+                    }
+                }
+            }
+        }
+        
+        if (error != null) {
+            Text(
+                "エラー: $error",
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall
+            )
         }
     }
+}
+
+@Composable
+private fun LogDialog(
+    log: String,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("実行ログ") },
+        text = {
+            SelectionContainer {
+                Text(
+                    text = log.ifEmpty { "ログがありません" },
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 12.sp,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 400.dp)
+                        .verticalScroll(rememberScrollState())
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text("閉じる")
+            }
+        }
+    )
 }

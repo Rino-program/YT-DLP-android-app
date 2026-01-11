@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import com.example.ytdlpapp.core.BinaryManager
 import com.example.ytdlpapp.core.DownloadManager
+import com.example.ytdlpapp.core.FFmpegConverter
 import com.example.ytdlpapp.ui.screen.MainScreen
 import com.example.ytdlpapp.ui.theme.YtDlpAppTheme
 
@@ -47,10 +48,14 @@ class MainActivity : ComponentActivity() {
                     val downloadManager = remember { 
                         DownloadManager(this@MainActivity, binaryManager) 
                     }
+                    val ffmpegConverter = remember {
+                        FFmpegConverter(this@MainActivity, binaryManager)
+                    }
 
                     MainScreen(
                         binaryManager = binaryManager,
-                        downloadManager = downloadManager
+                        downloadManager = downloadManager,
+                        ffmpegConverter = ffmpegConverter
                     )
                 }
             }

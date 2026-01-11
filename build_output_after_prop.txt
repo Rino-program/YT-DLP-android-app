@@ -1,0 +1,565 @@
+Initialized native services in: C:\Users\user.DESKTOP-89OCUK7\.gradle\native
+Initialized jansi services in: C:\Users\user.DESKTOP-89OCUK7\.gradle\native
+Received JVM installation metadata from 'C:\Program Files\Microsoft\jdk-17.0.17.10-hotspot': {JAVA_HOME=C:\Program Files\Microsoft\jdk-17.0.17.10-hotspot, JAVA_VERSION=17.0.17, JAVA_VENDOR=Microsoft, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.17+10-LTS, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.17+10-LTS, VM_VENDOR=Microsoft, OS_ARCH=amd64}
+Found daemon DaemonInfo{pid=23420, address=[d3c20662-c93d-4d62-888d-7fe892fde8ae port:54654, addresses:[/127.0.0.1]], state=Idle, lastBusy=1768025468328, context=DefaultDaemonContext[uid=f3a88a05-cd6a-4676-9e3b-c033e55d7e92,javaHome=C:\Users\user.DESKTOP-89OCUK7\.vscode\extensions\redhat.java-1.51.0-win32-x64\jre\21.0.9-win32-x86_64,daemonRegistryDir=C:\Users\user.DESKTOP-89OCUK7\.gradle\daemon,pid=23420,idleTimeout=10800000,priority=NORMAL,daemonOpts=--add-opens=java.base/java.util=ALL-UNNAMED,--add-opens=java.base/java.lang=ALL-UNNAMED,--add-opens=java.base/java.lang.invoke=ALL-UNNAMED,--add-opens=java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens=java.base/java.nio.charset=ALL-UNNAMED,--add-opens=java.base/java.net=ALL-UNNAMED,--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1024m,-Dfile.encoding=UTF-8,-Duser.country=JP,-Duser.language=ja,-Duser.variant]} however its context does not match the desired criteria.
+Java home is different.
+Wanted: DefaultDaemonContext[uid=null,javaHome=C:\Program Files\Microsoft\jdk-17.0.17.10-hotspot,daemonRegistryDir=C:\Users\user.DESKTOP-89OCUK7\.gradle\daemon,pid=14968,idleTimeout=null,priority=NORMAL,daemonOpts=--add-opens=java.base/java.util=ALL-UNNAMED,--add-opens=java.base/java.lang=ALL-UNNAMED,--add-opens=java.base/java.lang.invoke=ALL-UNNAMED,--add-opens=java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens=java.base/java.nio.charset=ALL-UNNAMED,--add-opens=java.base/java.net=ALL-UNNAMED,--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1024m,-Dfile.encoding=UTF-8,-Duser.country=JP,-Duser.language=ja,-Duser.variant]
+Actual: DefaultDaemonContext[uid=f3a88a05-cd6a-4676-9e3b-c033e55d7e92,javaHome=C:\Users\user.DESKTOP-89OCUK7\.vscode\extensions\redhat.java-1.51.0-win32-x64\jre\21.0.9-win32-x86_64,daemonRegistryDir=C:\Users\user.DESKTOP-89OCUK7\.gradle\daemon,pid=23420,idleTimeout=10800000,priority=NORMAL,daemonOpts=--add-opens=java.base/java.util=ALL-UNNAMED,--add-opens=java.base/java.lang=ALL-UNNAMED,--add-opens=java.base/java.lang.invoke=ALL-UNNAMED,--add-opens=java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens=java.base/java.nio.charset=ALL-UNNAMED,--add-opens=java.base/java.net=ALL-UNNAMED,--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1024m,-Dfile.encoding=UTF-8,-Duser.country=JP,-Duser.language=ja,-Duser.variant]
+
+  Looking for a different daemon...
+The client will now receive all logging from the daemon (pid: 20164). The daemon log file: C:\Users\user.DESKTOP-89OCUK7\.gradle\daemon\8.0\daemon-20164.out.log
+Starting 9th build in daemon [uptime: 32 mins 25.54 secs, performance: 100%, GC rate: 0.00/s, heap usage: 0% of 1 GiB]
+Using 4 worker leases.
+Now considering [C:\VSCode_program\yt-dlp\app] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Settings evaluated using settings file 'C:\VSCode_program\yt-dlp\app\settings.gradle'.
+Using local directory build cache for the root build (location = C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\build-cache-1, removeUnusedEntriesAfter = 7 days).
+Projects loaded. Root project using build file 'C:\VSCode_program\yt-dlp\app\build.gradle'.
+Included projects: [root project 'YtDlpApp']
+
+> Configure project :
+Evaluating root project 'YtDlpApp' using build file 'C:\VSCode_program\yt-dlp\app\build.gradle'.
+The configuration :classpath is both resolvable and consumable. This is considered a legacy configuration and it will eventually only be possible to be one of these.
+The configuration :classpath is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :classpath is both resolvable and consumable. This is considered a legacy configuration and it will eventually only be possible to be one of these.
+The configuration :classpath is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+Using default execution profile
+Using Kotlin Gradle Plugin gradle80 variant
+All projects evaluated.
+The configuration :classpath is both resolvable and consumable. This is considered a legacy configuration and it will eventually only be possible to be one of these.
+The configuration :classpath is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :classpath is both resolvable and consumable. This is considered a legacy configuration and it will eventually only be possible to be one of these.
+The configuration :classpath is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :classpath is both resolvable and consumable. This is considered a legacy configuration and it will eventually only be possible to be one of these.
+The configuration :classpath is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :classpath is both resolvable and consumable. This is considered a legacy configuration and it will eventually only be possible to be one of these.
+The configuration :classpath is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :classpath is both resolvable and consumable. This is considered a legacy configuration and it will eventually only be possible to be one of these.
+The configuration :classpath is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+Task name matched 'clean'
+Task name matched 'assembleDebug'
+Selected primary task 'clean' from project :
+Selected primary task 'assembleDebug' from project :
+The configuration :debugApiElements is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :debugRuntimeElements is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :kotlin-extension is both resolvable and consumable. This is considered a legacy configuration and it will eventually only be possible to be one of these.
+The configuration :kotlin-extension is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :releaseApiElements is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+The configuration :releaseRuntimeElements is both consumable and declarable. This combination is incorrect, only one of these flags should be set.
+Tasks to be executed: [task ':clean', task ':preBuild', task ':preDebugBuild', task ':mergeDebugNativeDebugMetadata', task ':checkDebugAarMetadata', task ':generateDebugResValues', task ':mapDebugSourceSetPaths', task ':generateDebugResources', task ':mergeDebugResources', task ':packageDebugResources', task ':parseDebugLocalResources', task ':createDebugCompatibleScreenManifests', task ':extractDeepLinksDebug', task ':processDebugMainManifest', task ':processDebugManifest', task ':processDebugManifestForPackage', task ':processDebugResources', task ':compileDebugKotlin', task ':javaPreCompileDebug', task ':compileDebugJavaWithJavac', task ':mergeDebugShaders', task ':compileDebugShaders', task ':generateDebugAssets', task ':mergeDebugAssets', task ':compressDebugAssets', task ':desugarDebugFileDependencies', task ':dexBuilderDebug', task ':mergeDebugGlobalSynthetics', task ':processDebugJavaRes', task ':mergeDebugJavaResource', task ':checkDebugDuplicateClasses', task ':mergeExtDexDebug', task ':mergeLibDexDebug', task ':mergeProjectDexDebug', task ':mergeDebugJniLibFolders', task ':mergeDebugNativeLibs', task ':stripDebugDebugSymbols', task ':validateSigningDebug', task ':writeDebugAppMetadata', task ':writeDebugSigningConfigVersions', task ':packageDebug', task ':createDebugApkListingFileRedirect', task ':assembleDebug']
+Tasks that were excluded: []
+Analytics other plugin to proto: Unknown plugin type org.gradle.api.plugins.JvmEcosystemPlugin$Inject expected enum ORG_GRADLE_API_PLUGINS_JVMECOSYSTEMPLUGIN
+Analytics other plugin to proto: Unknown plugin type org.gradle.api.plugins.JvmToolchainsPlugin$Inject expected enum ORG_GRADLE_API_PLUGINS_JVMTOOLCHAINSPLUGIN
+Resolve mutations for :clean (Thread[included builds,5,main]) started.
+:clean (Thread[included builds,5,main]) started.
+destroyer locations for task group 0 (Thread[Execution worker Thread 3,5,main]) started.
+
+> Task :clean
+Caching disabled for task ':clean' because:
+  Deletion cannot be cached
+Task ':clean' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :preBuild (Thread[included builds,5,main]) started.
+:preBuild (Thread[included builds,5,main]) started.
+
+> Task :preBuild UP-TO-DATE
+Skipping task ':preBuild' as it has no actions.
+Resolve mutations for :preDebugBuild (Thread[included builds,5,main]) started.
+:preDebugBuild (Thread[included builds,5,main]) started.
+
+> Task :preDebugBuild UP-TO-DATE
+Skipping task ':preDebugBuild' as it has no actions.
+Resolve mutations for :mergeDebugNativeDebugMetadata (Thread[included builds,5,main]) started.
+:mergeDebugNativeDebugMetadata (Thread[included builds,5,main]) started.
+
+> Task :mergeDebugNativeDebugMetadata NO-SOURCE
+Skipping task ':mergeDebugNativeDebugMetadata' as it has no source files and no previous output files.
+Resolve mutations for :checkDebugAarMetadata (Thread[included builds,5,main]) started.
+:checkDebugAarMetadata (Thread[included builds,5,main]) started.
+Resolve mutations for :generateDebugResValues (Thread[Execution worker Thread 2,5,main]) started.
+:generateDebugResValues (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :generateDebugResValues FROM-CACHE
+Build cache key for task ':generateDebugResValues' is 8201417f7e3aac12455eb07bdda53afb
+Task ':generateDebugResValues' is not up-to-date because:
+  Output property 'outputDirectory' file C:\VSCode_program\yt-dlp\app\build\generated\res\resValues\debug has been removed.
+Loaded cache entry for task ':generateDebugResValues' with cache key 8201417f7e3aac12455eb07bdda53afb
+Resolve mutations for :mapDebugSourceSetPaths (Thread[Execution worker Thread 2,5,main]) started.
+:mapDebugSourceSetPaths (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :mapDebugSourceSetPaths
+Transforming material3-1.1.2.aar (androidx.compose.material3:material3:1.1.2) with JetifyTransform
+Transforming material3-1.1.2.aar (androidx.compose.material3:material3:1.1.2) with ExtractAarTransform
+Transforming material3-1.1.2.aar (androidx.compose.material3:material3:1.1.2) with AarTransform
+Transforming material-release.aar (androidx.compose.material:material-android:1.5.4) with JetifyTransform
+Transforming material-release.aar (androidx.compose.material:material-android:1.5.4) with ExtractAarTransform
+Transforming material-release.aar (androidx.compose.material:material-android:1.5.4) with AarTransform
+Transforming material-icons-core-release.aar (androidx.compose.material:material-icons-core-android:1.5.4) with JetifyTransform
+Transforming material-icons-core-release.aar (androidx.compose.material:material-icons-core-android:1.5.4) with ExtractAarTransform
+Transforming material-icons-core-release.aar (androidx.compose.material:material-icons-core-android:1.5.4) with AarTransform
+Transforming material-icons-extended-release.aar (androidx.compose.material:material-icons-extended-android:1.5.4) with JetifyTransform
+Transforming material-icons-extended-release.aar (androidx.compose.material:material-icons-extended-android:1.5.4) with ExtractAarTransform
+Transforming material-icons-extended-release.aar (androidx.compose.material:material-icons-extended-android:1.5.4) with AarTransform
+Transforming material-ripple-release.aar (androidx.compose.material:material-ripple-android:1.5.4) with JetifyTransform
+Transforming material-ripple-release.aar (androidx.compose.material:material-ripple-android:1.5.4) with ExtractAarTransform
+Transforming material-ripple-release.aar (androidx.compose.material:material-ripple-android:1.5.4) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ba97ae8221d704ea78bd633c86877773\transformed\jetified-material3-1.1.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ba97ae8221d704ea78bd633c86877773\transformed\jetified-material3-1.1.2 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4e78d8526813f7576e193a85af5cf970\transformed\jetified-material-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4e78d8526813f7576e193a85af5cf970\transformed\jetified-material-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e6321fa13d7e0cc68484635a0b96377e\transformed\jetified-material-icons-core-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e6321fa13d7e0cc68484635a0b96377e\transformed\jetified-material-icons-core-release as it is up-to-date.
+Transforming foundation-release.aar (androidx.compose.foundation:foundation-android:1.5.4) with JetifyTransform
+Transforming foundation-release.aar (androidx.compose.foundation:foundation-android:1.5.4) with ExtractAarTransform
+Transforming foundation-release.aar (androidx.compose.foundation:foundation-android:1.5.4) with AarTransform
+Transforming animation-release.aar (androidx.compose.animation:animation-android:1.5.4) with JetifyTransform
+Transforming animation-release.aar (androidx.compose.animation:animation-android:1.5.4) with ExtractAarTransform
+Transforming animation-release.aar (androidx.compose.animation:animation-android:1.5.4) with AarTransform
+Transforming foundation-layout-release.aar (androidx.compose.foundation:foundation-layout-android:1.5.4) with JetifyTransform
+Transforming foundation-layout-release.aar (androidx.compose.foundation:foundation-layout-android:1.5.4) with ExtractAarTransform
+Transforming foundation-layout-release.aar (androidx.compose.foundation:foundation-layout-android:1.5.4) with AarTransform
+Transforming animation-core-release.aar (androidx.compose.animation:animation-core-android:1.5.4) with JetifyTransform
+Transforming animation-core-release.aar (androidx.compose.animation:animation-core-android:1.5.4) with ExtractAarTransform
+Transforming animation-core-release.aar (androidx.compose.animation:animation-core-android:1.5.4) with AarTransform
+Transforming ui-tooling-data-release.aar (androidx.compose.ui:ui-tooling-data-android:1.5.4) with JetifyTransform
+Transforming ui-tooling-data-release.aar (androidx.compose.ui:ui-tooling-data-android:1.5.4) with ExtractAarTransform
+Transforming ui-tooling-data-release.aar (androidx.compose.ui:ui-tooling-data-android:1.5.4) with AarTransform
+Transforming ui-unit-release.aar (androidx.compose.ui:ui-unit-android:1.5.4) with JetifyTransform
+Transforming ui-unit-release.aar (androidx.compose.ui:ui-unit-android:1.5.4) with ExtractAarTransform
+Transforming ui-unit-release.aar (androidx.compose.ui:ui-unit-android:1.5.4) with AarTransform
+Transforming ui-geometry-release.aar (androidx.compose.ui:ui-geometry-android:1.5.4) with JetifyTransform
+Transforming ui-geometry-release.aar (androidx.compose.ui:ui-geometry-android:1.5.4) with ExtractAarTransform
+Transforming ui-geometry-release.aar (androidx.compose.ui:ui-geometry-android:1.5.4) with AarTransform
+Transforming ui-util-release.aar (androidx.compose.ui:ui-util-android:1.5.4) with JetifyTransform
+Transforming ui-util-release.aar (androidx.compose.ui:ui-util-android:1.5.4) with ExtractAarTransform
+Transforming ui-util-release.aar (androidx.compose.ui:ui-util-android:1.5.4) with AarTransform
+Transforming ui-text-release.aar (androidx.compose.ui:ui-text-android:1.5.4) with JetifyTransform
+Transforming ui-text-release.aar (androidx.compose.ui:ui-text-android:1.5.4) with ExtractAarTransform
+Transforming ui-text-release.aar (androidx.compose.ui:ui-text-android:1.5.4) with AarTransform
+Transforming ui-tooling-preview-release.aar (androidx.compose.ui:ui-tooling-preview-android:1.5.4) with JetifyTransform
+Transforming ui-tooling-preview-release.aar (androidx.compose.ui:ui-tooling-preview-android:1.5.4) with ExtractAarTransform
+Transforming ui-tooling-preview-release.aar (androidx.compose.ui:ui-tooling-preview-android:1.5.4) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4b175e858f3117cea1a1fff686a7e026\transformed\jetified-ui-tooling-data-release because:
+  Caching not enabled.
+Transforming ui-tooling-release.aar (androidx.compose.ui:ui-tooling-android:1.5.4) with JetifyTransform
+Transforming ui-tooling-release.aar (androidx.compose.ui:ui-tooling-android:1.5.4) with ExtractAarTransform
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4b175e858f3117cea1a1fff686a7e026\transformed\jetified-ui-tooling-data-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4e1c11d7360ac9707b76d1806b00b24f\transformed\jetified-foundation-release because:
+  Caching not enabled.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\9bc41b131f8dd1c1774e8bb9b774c415\transformed\jetified-ui-geometry-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4e1c11d7360ac9707b76d1806b00b24f\transformed\jetified-foundation-release as it is up-to-date.
+Transforming ui-tooling-release.aar (androidx.compose.ui:ui-tooling-android:1.5.4) with AarTransform
+Transforming ui-graphics-release.aar (androidx.compose.ui:ui-graphics-android:1.5.4) with JetifyTransform
+Transforming ui-graphics-release.aar (androidx.compose.ui:ui-graphics-android:1.5.4) with ExtractAarTransform
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\9bc41b131f8dd1c1774e8bb9b774c415\transformed\jetified-ui-geometry-release as it is up-to-date.
+Transforming ui-graphics-release.aar (androidx.compose.ui:ui-graphics-android:1.5.4) with AarTransform
+Transforming ui-release.aar (androidx.compose.ui:ui-android:1.5.4) with JetifyTransform
+Transforming ui-release.aar (androidx.compose.ui:ui-android:1.5.4) with ExtractAarTransform
+Transforming ui-release.aar (androidx.compose.ui:ui-android:1.5.4) with AarTransform
+Transforming ui-test-manifest-1.5.4.aar (androidx.compose.ui:ui-test-manifest:1.5.4) with JetifyTransform
+Transforming ui-test-manifest-1.5.4.aar (androidx.compose.ui:ui-test-manifest:1.5.4) with ExtractAarTransform
+Transforming ui-test-manifest-1.5.4.aar (androidx.compose.ui:ui-test-manifest:1.5.4) with AarTransform
+Transforming activity-1.8.0.aar (androidx.activity:activity:1.8.0) with JetifyTransform
+Transforming activity-1.8.0.aar (androidx.activity:activity:1.8.0) with ExtractAarTransform
+Transforming activity-1.8.0.aar (androidx.activity:activity:1.8.0) with AarTransform
+Transforming activity-compose-1.8.0.aar (androidx.activity:activity-compose:1.8.0) with JetifyTransform
+Transforming activity-compose-1.8.0.aar (androidx.activity:activity-compose:1.8.0) with ExtractAarTransform
+Transforming activity-compose-1.8.0.aar (androidx.activity:activity-compose:1.8.0) with AarTransform
+Transforming activity-ktx-1.8.0.aar (androidx.activity:activity-ktx:1.8.0) with JetifyTransform
+Transforming activity-ktx-1.8.0.aar (androidx.activity:activity-ktx:1.8.0) with ExtractAarTransform
+Transforming activity-ktx-1.8.0.aar (androidx.activity:activity-ktx:1.8.0) with AarTransform
+Transforming savedstate-ktx-1.2.1.aar (androidx.savedstate:savedstate-ktx:1.2.1) with JetifyTransform
+Transforming savedstate-ktx-1.2.1.aar (androidx.savedstate:savedstate-ktx:1.2.1) with ExtractAarTransform
+Transforming savedstate-ktx-1.2.1.aar (androidx.savedstate:savedstate-ktx:1.2.1) with AarTransform
+Transforming savedstate-1.2.1.aar (androidx.savedstate:savedstate:1.2.1) with JetifyTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\90d0066d5c607be45a5b8b81d3d23301\transformed\jetified-ui-test-manifest-1.5.4 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\90d0066d5c607be45a5b8b81d3d23301\transformed\jetified-ui-test-manifest-1.5.4 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\2dafbfc3728a52f899f58f3ac96b0fd7\transformed\jetified-ui-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\2dafbfc3728a52f899f58f3ac96b0fd7\transformed\jetified-ui-release as it is up-to-date.
+Transforming savedstate-1.2.1.aar (androidx.savedstate:savedstate:1.2.1) with ExtractAarTransform
+Transforming savedstate-1.2.1.aar (androidx.savedstate:savedstate:1.2.1) with AarTransform
+Transforming emoji2-1.4.0.aar (androidx.emoji2:emoji2:1.4.0) with JetifyTransform
+Transforming emoji2-1.4.0.aar (androidx.emoji2:emoji2:1.4.0) with ExtractAarTransform
+Transforming emoji2-1.4.0.aar (androidx.emoji2:emoji2:1.4.0) with AarTransform
+Transforming lifecycle-process-2.6.2.aar (androidx.lifecycle:lifecycle-process:2.6.2) with JetifyTransform
+Transforming lifecycle-process-2.6.2.aar (androidx.lifecycle:lifecycle-process:2.6.2) with ExtractAarTransform
+Transforming lifecycle-process-2.6.2.aar (androidx.lifecycle:lifecycle-process:2.6.2) with AarTransform
+Transforming lifecycle-livedata-core-2.6.2.aar (androidx.lifecycle:lifecycle-livedata-core:2.6.2) with JetifyTransform
+Transforming lifecycle-livedata-core-2.6.2.aar (androidx.lifecycle:lifecycle-livedata-core:2.6.2) with ExtractAarTransform
+Transforming lifecycle-livedata-core-2.6.2.aar (androidx.lifecycle:lifecycle-livedata-core:2.6.2) with AarTransform
+Transforming lifecycle-viewmodel-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2) with JetifyTransform
+Transforming lifecycle-viewmodel-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2) with ExtractAarTransform
+Transforming lifecycle-viewmodel-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2) with AarTransform
+Transforming lifecycle-viewmodel-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel:2.6.2) with JetifyTransform
+Transforming lifecycle-viewmodel-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel:2.6.2) with ExtractAarTransform
+Transforming lifecycle-viewmodel-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel:2.6.2) with AarTransform
+Transforming lifecycle-viewmodel-savedstate-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2) with JetifyTransform
+Transforming lifecycle-viewmodel-savedstate-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2) with ExtractAarTransform
+Transforming lifecycle-viewmodel-savedstate-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2) with AarTransform
+Transforming customview-poolingcontainer-1.0.0.aar (androidx.customview:customview-poolingcontainer:1.0.0) with JetifyTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ee18ac5dccea66d75a8dc99963e7ec68\transformed\jetified-lifecycle-viewmodel-ktx-2.6.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ee18ac5dccea66d75a8dc99963e7ec68\transformed\jetified-lifecycle-viewmodel-ktx-2.6.2 as it is up-to-date.
+Transforming customview-poolingcontainer-1.0.0.aar (androidx.customview:customview-poolingcontainer:1.0.0) with ExtractAarTransform
+Transforming customview-poolingcontainer-1.0.0.aar (androidx.customview:customview-poolingcontainer:1.0.0) with AarTransform
+Transforming core-ktx-1.12.0.aar (androidx.core:core-ktx:1.12.0) with JetifyTransform
+Transforming core-ktx-1.12.0.aar (androidx.core:core-ktx:1.12.0) with ExtractAarTransform
+Transforming core-ktx-1.12.0.aar (androidx.core:core-ktx:1.12.0) with AarTransform
+Transforming autofill-1.0.0.aar (androidx.autofill:autofill:1.0.0) with JetifyTransform
+Transforming autofill-1.0.0.aar (androidx.autofill:autofill:1.0.0) with ExtractAarTransform
+Transforming autofill-1.0.0.aar (androidx.autofill:autofill:1.0.0) with AarTransform
+Transforming core-1.12.0.aar (androidx.core:core:1.12.0) with JetifyTransform
+Transforming core-1.12.0.aar (androidx.core:core:1.12.0) with ExtractAarTransform
+Transforming core-1.12.0.aar (androidx.core:core:1.12.0) with AarTransform
+Transforming core-1.12.0.aar (androidx.core:core:1.12.0) with JetifyTransform
+Transforming core-1.12.0.aar (androidx.core:core:1.12.0) with ExtractAarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ea7853fe8d3633cd605dc83ee4624a0c\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.2 because:
+  Caching not enabled.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e2191b162e7dbd0c53a45bd8fb9e7534\transformed\jetified-customview-poolingcontainer-1.0.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ea7853fe8d3633cd605dc83ee4624a0c\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.2 as it is up-to-date.
+Transforming core-1.12.0.aar (androidx.core:core:1.12.0) with AarTransform
+Transforming lifecycle-runtime-2.6.2.aar (androidx.lifecycle:lifecycle-runtime:2.6.2) with JetifyTransform
+Transforming lifecycle-runtime-2.6.2.aar (androidx.lifecycle:lifecycle-runtime:2.6.2) with ExtractAarTransform
+Transforming lifecycle-runtime-2.6.2.aar (androidx.lifecycle:lifecycle-runtime:2.6.2) with AarTransform
+Transforming lifecycle-runtime-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-runtime-ktx:2.6.2) with JetifyTransform
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e2191b162e7dbd0c53a45bd8fb9e7534\transformed\jetified-customview-poolingcontainer-1.0.0 as it is up-to-date.
+Transforming lifecycle-runtime-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-runtime-ktx:2.6.2) with ExtractAarTransform
+Transforming lifecycle-runtime-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-runtime-ktx:2.6.2) with AarTransform
+Transforming runtime-saveable-release.aar (androidx.compose.runtime:runtime-saveable-android:1.5.4) with JetifyTransform
+Transforming runtime-saveable-release.aar (androidx.compose.runtime:runtime-saveable-android:1.5.4) with ExtractAarTransform
+Transforming runtime-saveable-release.aar (androidx.compose.runtime:runtime-saveable-android:1.5.4) with AarTransform
+Transforming runtime-release.aar (androidx.compose.runtime:runtime-android:1.5.4) with JetifyTransform
+Transforming runtime-release.aar (androidx.compose.runtime:runtime-android:1.5.4) with ExtractAarTransform
+Transforming runtime-release.aar (androidx.compose.runtime:runtime-android:1.5.4) with AarTransform
+Transforming annotation-experimental-1.3.0.aar (androidx.annotation:annotation-experimental:1.3.0) with JetifyTransform
+Transforming annotation-experimental-1.3.0.aar (androidx.annotation:annotation-experimental:1.3.0) with ExtractAarTransform
+Transforming annotation-experimental-1.3.0.aar (androidx.annotation:annotation-experimental:1.3.0) with AarTransform
+Transforming interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with JetifyTransform
+Transforming interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with ExtractAarTransform
+Transforming interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with AarTransform
+Transforming versionedparcelable-1.1.1.aar (androidx.versionedparcelable:versionedparcelable:1.1.1) with JetifyTransform
+Transforming versionedparcelable-1.1.1.aar (androidx.versionedparcelable:versionedparcelable:1.1.1) with ExtractAarTransform
+Transforming versionedparcelable-1.1.1.aar (androidx.versionedparcelable:versionedparcelable:1.1.1) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\870bc199e94cd0c0fae443e1771e0748\transformed\lifecycle-runtime-2.6.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\870bc199e94cd0c0fae443e1771e0748\transformed\lifecycle-runtime-2.6.2 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6a699b5c02783db4e79123a6153aa310\transformed\versionedparcelable-1.1.1 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6a699b5c02783db4e79123a6153aa310\transformed\versionedparcelable-1.1.1 as it is up-to-date.
+Transforming core-runtime-2.2.0.aar (androidx.arch.core:core-runtime:2.2.0) with JetifyTransform
+Transforming core-runtime-2.2.0.aar (androidx.arch.core:core-runtime:2.2.0) with ExtractAarTransform
+Transforming core-runtime-2.2.0.aar (androidx.arch.core:core-runtime:2.2.0) with AarTransform
+Transforming profileinstaller-1.3.0.aar (androidx.profileinstaller:profileinstaller:1.3.0) with JetifyTransform
+Transforming profileinstaller-1.3.0.aar (androidx.profileinstaller:profileinstaller:1.3.0) with ExtractAarTransform
+Transforming profileinstaller-1.3.0.aar (androidx.profileinstaller:profileinstaller:1.3.0) with AarTransform
+Transforming startup-runtime-1.1.1.aar (androidx.startup:startup-runtime:1.1.1) with JetifyTransform
+Transforming startup-runtime-1.1.1.aar (androidx.startup:startup-runtime:1.1.1) with ExtractAarTransform
+Transforming startup-runtime-1.1.1.aar (androidx.startup:startup-runtime:1.1.1) with AarTransform
+Transforming tracing-1.0.0.aar (androidx.tracing:tracing:1.0.0) with JetifyTransform
+Transforming tracing-1.0.0.aar (androidx.tracing:tracing:1.0.0) with ExtractAarTransform
+Transforming tracing-1.0.0.aar (androidx.tracing:tracing:1.0.0) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7137451f187b1b3438af9e1448bd9c66\transformed\jetified-emoji2-1.4.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7137451f187b1b3438af9e1448bd9c66\transformed\jetified-emoji2-1.4.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\3b11edbaba10d13cffda655d62ce54a8\transformed\jetified-animation-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\3b11edbaba10d13cffda655d62ce54a8\transformed\jetified-animation-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\913a3dd8ec58fa01a6b67f6e26e1e687\transformed\jetified-activity-ktx-1.8.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\913a3dd8ec58fa01a6b67f6e26e1e687\transformed\jetified-activity-ktx-1.8.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\50af53854cdb131e93c0d494764a5c72\transformed\jetified-lifecycle-process-2.6.2 because:
+  Caching not enabled.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\23f9afee74028b6ff1cb06ede073f1a9\transformed\core-1.12.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\50af53854cdb131e93c0d494764a5c72\transformed\jetified-lifecycle-process-2.6.2 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\645b1bf49b7b6e7b23cf7cf016adcead\transformed\jetified-autofill-1.0.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\645b1bf49b7b6e7b23cf7cf016adcead\transformed\jetified-autofill-1.0.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\02e06c535a78ef946a15fc0fa7c14dfd\transformed\jetified-activity-compose-1.8.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\02e06c535a78ef946a15fc0fa7c14dfd\transformed\jetified-activity-compose-1.8.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ba7cb86b24505d8cdedb6c871623bc1b\transformed\jetified-core-ktx-1.12.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ba7cb86b24505d8cdedb6c871623bc1b\transformed\jetified-core-ktx-1.12.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b5cd7d26dc25453f863a369a4510f5ea\transformed\jetified-ui-text-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b5cd7d26dc25453f863a369a4510f5ea\transformed\jetified-ui-text-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\276e4965647070bb010d37bd91db491c\transformed\lifecycle-livedata-core-2.6.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\276e4965647070bb010d37bd91db491c\transformed\lifecycle-livedata-core-2.6.2 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b8f2835793c1a41382d034ddbbf54610\transformed\jetified-activity-1.8.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b8f2835793c1a41382d034ddbbf54610\transformed\jetified-activity-1.8.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7232977db8aa73ee9904247e527387f5\transformed\jetified-ui-tooling-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7232977db8aa73ee9904247e527387f5\transformed\jetified-ui-tooling-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\9c0caa6e55fa6816276bdc16f2ec0686\transformed\jetified-ui-unit-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\9c0caa6e55fa6816276bdc16f2ec0686\transformed\jetified-ui-unit-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\08a5bd9c1d43e3eab8114b02960bb328\transformed\jetified-material-ripple-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\08a5bd9c1d43e3eab8114b02960bb328\transformed\jetified-material-ripple-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\daba7390a2136d142fbe06e541d10760\transformed\jetified-material-icons-extended-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\daba7390a2136d142fbe06e541d10760\transformed\jetified-material-icons-extended-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\722387867c7f0fddaf7fa8b8fc613989\transformed\jetified-ui-graphics-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\722387867c7f0fddaf7fa8b8fc613989\transformed\jetified-ui-graphics-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7b47324ae78a046243c80fd6a3dbc372\transformed\jetified-startup-runtime-1.1.1 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7b47324ae78a046243c80fd6a3dbc372\transformed\jetified-startup-runtime-1.1.1 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e6099c6209be3a9601094c58665a82e9\transformed\jetified-ui-tooling-preview-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e6099c6209be3a9601094c58665a82e9\transformed\jetified-ui-tooling-preview-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\f124182b85dee96cef9acb4b5f9023b9\transformed\jetified-lifecycle-runtime-ktx-2.6.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\f124182b85dee96cef9acb4b5f9023b9\transformed\jetified-lifecycle-runtime-ktx-2.6.2 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\1477e07d2395bb6f3b2e1a701e206cce\transformed\jetified-ui-util-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\1477e07d2395bb6f3b2e1a701e206cce\transformed\jetified-ui-util-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\d99319b592676690d51b76c37ced014f\transformed\jetified-runtime-saveable-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\d99319b592676690d51b76c37ced014f\transformed\jetified-runtime-saveable-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6da92a3b8024e7f2c681da3b30ca3604\transformed\jetified-savedstate-ktx-1.2.1 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6da92a3b8024e7f2c681da3b30ca3604\transformed\jetified-savedstate-ktx-1.2.1 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\a82c568af0231e496814c51453f70063\transformed\jetified-animation-core-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\a82c568af0231e496814c51453f70063\transformed\jetified-animation-core-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\9712bac34d2b8f7b1c12f3fa6c8b87b6\transformed\jetified-runtime-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\9712bac34d2b8f7b1c12f3fa6c8b87b6\transformed\jetified-runtime-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b69ab03e38f3ff3f7366bbb1fc2fca47\transformed\jetified-foundation-layout-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b69ab03e38f3ff3f7366bbb1fc2fca47\transformed\jetified-foundation-layout-release as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4b70e4802902e1e1fd0422351c3552a8\transformed\jetified-annotation-experimental-1.3.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4b70e4802902e1e1fd0422351c3552a8\transformed\jetified-annotation-experimental-1.3.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6c22a50ba449b9668e3d276eab747f5f\transformed\lifecycle-viewmodel-2.6.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6c22a50ba449b9668e3d276eab747f5f\transformed\lifecycle-viewmodel-2.6.2 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\76a866b646ac372023771b0b8c45bc6f\transformed\jetified-profileinstaller-1.3.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\76a866b646ac372023771b0b8c45bc6f\transformed\jetified-profileinstaller-1.3.0 as it is up-to-date.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\23f9afee74028b6ff1cb06ede073f1a9\transformed\core-1.12.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\66c005fb2f37cd0bc66144f860c96353\transformed\interpolator-1.0.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\66c005fb2f37cd0bc66144f860c96353\transformed\interpolator-1.0.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\5e6311528b2112cec190a1c6ba8f7f41\transformed\core-runtime-2.2.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\5e6311528b2112cec190a1c6ba8f7f41\transformed\core-runtime-2.2.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\cd74a1f5c715a5cba0238e39beb616ca\transformed\jetified-savedstate-1.2.1 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\cd74a1f5c715a5cba0238e39beb616ca\transformed\jetified-savedstate-1.2.1 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\c1a9f9f643c5f1580c71b90f90da6799\transformed\jetified-tracing-1.0.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\c1a9f9f643c5f1580c71b90f90da6799\transformed\jetified-tracing-1.0.0 as it is up-to-date.
+Caching disabled for task ':mapDebugSourceSetPaths' because:
+  Caching has been disabled for the task
+Task ':mapDebugSourceSetPaths' is not up-to-date because:
+  Output property 'filepathMappingFile' file C:\VSCode_program\yt-dlp\app\build\intermediates\source_set_path_map\debug\file-map.txt has been removed.
+Resolve mutations for :generateDebugResources (Thread[Execution worker Thread 2,5,main]) started.
+:generateDebugResources (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :generateDebugResources UP-TO-DATE
+Skipping task ':generateDebugResources' as it has no actions.
+Resolve mutations for :mergeDebugResources (Thread[Execution worker Thread 2,5,main]) started.
+:mergeDebugResources (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :checkDebugAarMetadata
+Transforming material3-1.1.2.aar (androidx.compose.material3:material3:1.1.2) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material3\material3\1.1.2\9cb673a30af4258e08f99c560968c02c82c6b67f\material3-1.1.2.aar is 0e9f1d7750220dedbe93fbd0a714e705
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material3\material3\1.1.2\9cb673a30af4258e08f99c560968c02c82c6b67f\material3-1.1.2.aar as it is up-to-date.
+Transforming material-icons-extended-release.aar (androidx.compose.material:material-icons-extended-android:1.5.4) with JetifyTransform
+Transforming material3-1.1.2.aar (androidx.compose.material3:material3:1.1.2) with ExtractAarTransform
+Transforming material-release.aar (androidx.compose.material:material-android:1.5.4) with JetifyTransform
+Transforming material-icons-core-release.aar (androidx.compose.material:material-icons-core-android:1.5.4) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material\material-icons-extended-android\1.5.4\ee4213dc1888f35c2d1285b452839c5dd90bbbae\material-icons-extended-release.aar is c2e53f85e73747ae10a912435280f516
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e8137fa2d8eb35e82bcfa8b77e403481\transformed\jetified-material3-1.1.2.aar because:
+  Caching not enabled.
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material\material-icons-extended-android\1.5.4\ee4213dc1888f35c2d1285b452839c5dd90bbbae\material-icons-extended-release.aar as it is up-to-date.
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material\material-android\1.5.4\c2f5e8609122edf992322358d46739fe2e63881b\material-release.aar is c09eb32c25818644cdd486c57d118838
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material\material-android\1.5.4\c2f5e8609122edf992322358d46739fe2e63881b\material-release.aar as it is up-to-date.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e8137fa2d8eb35e82bcfa8b77e403481\transformed\jetified-material3-1.1.2.aar as it is up-to-date.
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material\material-icons-core-android\1.5.4\57e3783c6f751c38a674d7ffb78538ccbb57c2d4\material-icons-core-release.aar is 8e31e6eccb28236e633851934d57c226
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material\material-icons-core-android\1.5.4\57e3783c6f751c38a674d7ffb78538ccbb57c2d4\material-icons-core-release.aar as it is up-to-date.
+Transforming material-icons-extended-release.aar (androidx.compose.material:material-icons-extended-android:1.5.4) with ExtractAarTransform
+Transforming material-release.aar (androidx.compose.material:material-android:1.5.4) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\d69b95a5cc331c0f71404a8df96e1e48\transformed\jetified-material-icons-extended-release.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\d69b95a5cc331c0f71404a8df96e1e48\transformed\jetified-material-icons-extended-release.aar as it is up-to-date.
+Transforming material3-1.1.2.aar (androidx.compose.material3:material3:1.1.2) with AarTransform
+Transforming material-icons-core-release.aar (androidx.compose.material:material-icons-core-android:1.5.4) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\3d27b9570f06445750856e7b1f801705\transformed\jetified-material-release.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\3d27b9570f06445750856e7b1f801705\transformed\jetified-material-release.aar as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ba97ae8221d704ea78bd633c86877773\transformed\jetified-material3-1.1.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ba97ae8221d704ea78bd633c86877773\transformed\jetified-material3-1.1.2 as it is up-to-date.
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6a28638d5e4f7165209a0e64ffbc90a9\transformed\jetified-material-icons-core-release.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6a28638d5e4f7165209a0e64ffbc90a9\transformed\jetified-material-icons-core-release.aar as it is up-to-date.
+Transforming material-icons-extended-release.aar (androidx.compose.material:material-icons-extended-android:1.5.4) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\daba7390a2136d142fbe06e541d10760\transformed\jetified-material-icons-extended-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\daba7390a2136d142fbe06e541d10760\transformed\jetified-material-icons-extended-release as it is up-to-date.
+Transforming material-release.aar (androidx.compose.material:material-android:1.5.4) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4e78d8526813f7576e193a85af5cf970\transformed\jetified-material-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\4e78d8526813f7576e193a85af5cf970\transformed\jetified-material-release as it is up-to-date.
+Transforming material-icons-core-release.aar (androidx.compose.material:material-icons-core-android:1.5.4) with AarTransform
+Transforming savedstate-ktx-1.2.1.aar (androidx.savedstate:savedstate-ktx:1.2.1) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.savedstate\savedstate-ktx\1.2.1\b86d338d91b1c26193a42b1d87be9bb02123fa16\savedstate-ktx-1.2.1.aar is f4bd74c0c093878ee531e2473c727424
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.savedstate\savedstate-ktx\1.2.1\b86d338d91b1c26193a42b1d87be9bb02123fa16\savedstate-ktx-1.2.1.aar as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e6321fa13d7e0cc68484635a0b96377e\transformed\jetified-material-icons-core-release because:
+  Caching not enabled.
+Transforming lifecycle-viewmodel-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel:2.6.2) with JetifyTransform
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\e6321fa13d7e0cc68484635a0b96377e\transformed\jetified-material-icons-core-release as it is up-to-date.
+Transforming lifecycle-livedata-core-2.6.2.aar (androidx.lifecycle:lifecycle-livedata-core:2.6.2) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-viewmodel\2.6.2\fa35bfdbbe0e7df1573e377cbdd15de35176141d\lifecycle-viewmodel-2.6.2.aar is a85f012f7eb99c61495d20317223dcb8
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-viewmodel\2.6.2\fa35bfdbbe0e7df1573e377cbdd15de35176141d\lifecycle-viewmodel-2.6.2.aar as it is up-to-date.
+Transforming savedstate-ktx-1.2.1.aar (androidx.savedstate:savedstate-ktx:1.2.1) with ExtractAarTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-livedata-core\2.6.2\23f66885a260f0a2cd6540927ea8795484afd2da\lifecycle-livedata-core-2.6.2.aar is b6c75bc871d6982b5b11aa1478c2615a
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-livedata-core\2.6.2\23f66885a260f0a2cd6540927ea8795484afd2da\lifecycle-livedata-core-2.6.2.aar as it is up-to-date.
+Transforming lifecycle-viewmodel-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel:2.6.2) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\121a085aeaf9ecbe7cf49fd150981299\transformed\jetified-savedstate-ktx-1.2.1.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\121a085aeaf9ecbe7cf49fd150981299\transformed\jetified-savedstate-ktx-1.2.1.aar as it is up-to-date.
+Transforming runtime-saveable-release.aar (androidx.compose.runtime:runtime-saveable-android:1.5.4) with JetifyTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-viewmodel\2.6.2\fa35bfdbbe0e7df1573e377cbdd15de35176141d\lifecycle-viewmodel-2.6.2.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-viewmodel\2.6.2\fa35bfdbbe0e7df1573e377cbdd15de35176141d\lifecycle-viewmodel-2.6.2.aar as it is up-to-date.
+Transforming lifecycle-livedata-core-2.6.2.aar (androidx.lifecycle:lifecycle-livedata-core:2.6.2) with ExtractAarTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.runtime\runtime-saveable-android\1.5.4\6583582878225f421416918d9403c784cc6412da\runtime-saveable-release.aar is 6142b91471c45668105fbcc477eeb4aa
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.runtime\runtime-saveable-android\1.5.4\6583582878225f421416918d9403c784cc6412da\runtime-saveable-release.aar as it is up-to-date.
+Transforming savedstate-ktx-1.2.1.aar (androidx.savedstate:savedstate-ktx:1.2.1) with AarTransform
+Transforming lifecycle-viewmodel-2.6.2.aar (androidx.lifecycle:lifecycle-viewmodel:2.6.2) with AarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-livedata-core\2.6.2\23f66885a260f0a2cd6540927ea8795484afd2da\lifecycle-livedata-core-2.6.2.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-livedata-core\2.6.2\23f66885a260f0a2cd6540927ea8795484afd2da\lifecycle-livedata-core-2.6.2.aar as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6da92a3b8024e7f2c681da3b30ca3604\transformed\jetified-savedstate-ktx-1.2.1 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6da92a3b8024e7f2c681da3b30ca3604\transformed\jetified-savedstate-ktx-1.2.1 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6c22a50ba449b9668e3d276eab747f5f\transformed\lifecycle-viewmodel-2.6.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6c22a50ba449b9668e3d276eab747f5f\transformed\lifecycle-viewmodel-2.6.2 as it is up-to-date.
+Transforming runtime-saveable-release.aar (androidx.compose.runtime:runtime-saveable-android:1.5.4) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\75c87f68b481c42cc8437433abd35f63\transformed\jetified-runtime-saveable-release.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\75c87f68b481c42cc8437433abd35f63\transformed\jetified-runtime-saveable-release.aar as it is up-to-date.
+Transforming lifecycle-livedata-core-2.6.2.aar (androidx.lifecycle:lifecycle-livedata-core:2.6.2) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\276e4965647070bb010d37bd91db491c\transformed\lifecycle-livedata-core-2.6.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\276e4965647070bb010d37bd91db491c\transformed\lifecycle-livedata-core-2.6.2 as it is up-to-date.
+Transforming tracing-1.0.0.aar (androidx.tracing:tracing:1.0.0) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.tracing\tracing\1.0.0\69cef34711dffbc517e7a0a419ec4a98f84f496a\tracing-1.0.0.aar is 5000d7836b8d9f5f76b3462d9f055e12
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.tracing\tracing\1.0.0\69cef34711dffbc517e7a0a419ec4a98f84f496a\tracing-1.0.0.aar as it is up-to-date.
+Transforming runtime-saveable-release.aar (androidx.compose.runtime:runtime-saveable-android:1.5.4) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\d99319b592676690d51b76c37ced014f\transformed\jetified-runtime-saveable-release because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\d99319b592676690d51b76c37ced014f\transformed\jetified-runtime-saveable-release as it is up-to-date.
+Transforming tracing-1.0.0.aar (androidx.tracing:tracing:1.0.0) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\75836726a21c8ae62704a9cddf710d9b\transformed\jetified-tracing-1.0.0.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\75836726a21c8ae62704a9cddf710d9b\transformed\jetified-tracing-1.0.0.aar as it is up-to-date.
+Transforming startup-runtime-1.1.1.aar (androidx.startup:startup-runtime:1.1.1) with JetifyTransform
+Transforming tracing-1.0.0.aar (androidx.tracing:tracing:1.0.0) with AarTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.startup\startup-runtime\1.1.1\9d4ba67056aff98b69eadc1477c19a1e67cb9470\startup-runtime-1.1.1.aar is bf32704ab08f80f290e9d540b944e7c1
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.startup\startup-runtime\1.1.1\9d4ba67056aff98b69eadc1477c19a1e67cb9470\startup-runtime-1.1.1.aar as it is up-to-date.
+Transforming profileinstaller-1.3.0.aar (androidx.profileinstaller:profileinstaller:1.3.0) with JetifyTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\c1a9f9f643c5f1580c71b90f90da6799\transformed\jetified-tracing-1.0.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\c1a9f9f643c5f1580c71b90f90da6799\transformed\jetified-tracing-1.0.0 as it is up-to-date.
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.profileinstaller\profileinstaller\1.3.0\624641814089cd7bebf427aafa68ac089fb38261\profileinstaller-1.3.0.aar is cc445b570643cc39aea81465b69f77ef
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.profileinstaller\profileinstaller\1.3.0\624641814089cd7bebf427aafa68ac089fb38261\profileinstaller-1.3.0.aar as it is up-to-date.
+Transforming lifecycle-runtime-2.6.2.aar (androidx.lifecycle:lifecycle-runtime:2.6.2) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-runtime\2.6.2\f0ef27053faa89b3ec06c4f118cea0a15edde35b\lifecycle-runtime-2.6.2.aar is 624ad375d958d89838e8cb25139fc7da
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-runtime\2.6.2\f0ef27053faa89b3ec06c4f118cea0a15edde35b\lifecycle-runtime-2.6.2.aar as it is up-to-date.
+Transforming startup-runtime-1.1.1.aar (androidx.startup:startup-runtime:1.1.1) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\99c028be957229ef691390e1d0a4b28a\transformed\jetified-startup-runtime-1.1.1.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\99c028be957229ef691390e1d0a4b28a\transformed\jetified-startup-runtime-1.1.1.aar as it is up-to-date.
+Transforming profileinstaller-1.3.0.aar (androidx.profileinstaller:profileinstaller:1.3.0) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ce2b4267792818f7b2bb1ca4094c6469\transformed\jetified-profileinstaller-1.3.0.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\ce2b4267792818f7b2bb1ca4094c6469\transformed\jetified-profileinstaller-1.3.0.aar as it is up-to-date.
+Transforming lifecycle-runtime-2.6.2.aar (androidx.lifecycle:lifecycle-runtime:2.6.2) with ExtractAarTransform
+Transforming startup-runtime-1.1.1.aar (androidx.startup:startup-runtime:1.1.1) with AarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-runtime\2.6.2\f0ef27053faa89b3ec06c4f118cea0a15edde35b\lifecycle-runtime-2.6.2.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-runtime\2.6.2\f0ef27053faa89b3ec06c4f118cea0a15edde35b\lifecycle-runtime-2.6.2.aar as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7b47324ae78a046243c80fd6a3dbc372\transformed\jetified-startup-runtime-1.1.1 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7b47324ae78a046243c80fd6a3dbc372\transformed\jetified-startup-runtime-1.1.1 as it is up-to-date.
+Transforming profileinstaller-1.3.0.aar (androidx.profileinstaller:profileinstaller:1.3.0) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\76a866b646ac372023771b0b8c45bc6f\transformed\jetified-profileinstaller-1.3.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\76a866b646ac372023771b0b8c45bc6f\transformed\jetified-profileinstaller-1.3.0 as it is up-to-date.
+Transforming lifecycle-runtime-2.6.2.aar (androidx.lifecycle:lifecycle-runtime:2.6.2) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\870bc199e94cd0c0fae443e1771e0748\transformed\lifecycle-runtime-2.6.2 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\870bc199e94cd0c0fae443e1771e0748\transformed\lifecycle-runtime-2.6.2 as it is up-to-date.
+Transforming emoji2-1.4.0.aar (androidx.emoji2:emoji2:1.4.0) with JetifyTransform
+Transforming activity-ktx-1.8.0.aar (androidx.activity:activity-ktx:1.8.0) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.emoji2\emoji2\1.4.0\db99b152737e1ef1cca8e2ff24986a1e1dc8561d\emoji2-1.4.0.aar is cc2599ec180b639963bde304cf16b393
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.emoji2\emoji2\1.4.0\db99b152737e1ef1cca8e2ff24986a1e1dc8561d\emoji2-1.4.0.aar as it is up-to-date.
+Transforming activity-1.8.0.aar (androidx.activity:activity:1.8.0) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.activity\activity-ktx\1.8.0\5c08d15826742f3cf909dee2832c8ab46a1cf316\activity-ktx-1.8.0.aar is 5da68274cd501db8abcb8bd851812902
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.activity\activity-ktx\1.8.0\5c08d15826742f3cf909dee2832c8ab46a1cf316\activity-ktx-1.8.0.aar as it is up-to-date.
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.activity\activity\1.8.0\4266e2118d565daa20212d1726e11f41e1a4d0ca\activity-1.8.0.aar is 437bdbc4208976dc394dddff761a0b1b
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.activity\activity\1.8.0\4266e2118d565daa20212d1726e11f41e1a4d0ca\activity-1.8.0.aar as it is up-to-date.
+Transforming emoji2-1.4.0.aar (androidx.emoji2:emoji2:1.4.0) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7ff7fc6c63dde0ce007b1732de345ca4\transformed\jetified-emoji2-1.4.0.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7ff7fc6c63dde0ce007b1732de345ca4\transformed\jetified-emoji2-1.4.0.aar as it is up-to-date.
+Transforming activity-ktx-1.8.0.aar (androidx.activity:activity-ktx:1.8.0) with ExtractAarTransform
+Transforming activity-1.8.0.aar (androidx.activity:activity:1.8.0) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\8ddc3211a0dcce03a8d99e86e500f7fd\transformed\jetified-activity-ktx-1.8.0.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\8ddc3211a0dcce03a8d99e86e500f7fd\transformed\jetified-activity-ktx-1.8.0.aar as it is up-to-date.
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\943c2f74827dbb712059ed218f842ff6\transformed\jetified-activity-1.8.0.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\943c2f74827dbb712059ed218f842ff6\transformed\jetified-activity-1.8.0.aar as it is up-to-date.
+Transforming emoji2-1.4.0.aar (androidx.emoji2:emoji2:1.4.0) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7137451f187b1b3438af9e1448bd9c66\transformed\jetified-emoji2-1.4.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\7137451f187b1b3438af9e1448bd9c66\transformed\jetified-emoji2-1.4.0 as it is up-to-date.
+Transforming activity-ktx-1.8.0.aar (androidx.activity:activity-ktx:1.8.0) with AarTransform
+Transforming activity-1.8.0.aar (androidx.activity:activity:1.8.0) with AarTransform
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\913a3dd8ec58fa01a6b67f6e26e1e687\transformed\jetified-activity-ktx-1.8.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\913a3dd8ec58fa01a6b67f6e26e1e687\transformed\jetified-activity-ktx-1.8.0 as it is up-to-date.
+Caching disabled for AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b8f2835793c1a41382d034ddbbf54610\transformed\jetified-activity-1.8.0 because:
+  Caching not enabled.
+Skipping AarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b8f2835793c1a41382d034ddbbf54610\transformed\jetified-activity-1.8.0 as it is up-to-date.
+Transforming material-ripple-release.aar (androidx.compose.material:material-ripple-android:1.5.4) with JetifyTransform
+Transforming lifecycle-runtime-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-runtime-ktx:2.6.2) with JetifyTransform
+Transforming foundation-release.aar (androidx.compose.foundation:foundation-android:1.5.4) with JetifyTransform
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material\material-ripple-android\1.5.4\84e8cdea74de8ab9e52085f73c7d85ba8b4437d2\material-ripple-release.aar is 0bac4b290b554ebc5ba247726997f4d5
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-runtime-ktx\2.6.2\33decb94ec41360796e2160159bdca7dde688d0f\lifecycle-runtime-ktx-2.6.2.aar is f0b8f9b738b4c2fbbe8efae348ee7e3f
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-runtime-ktx\2.6.2\33decb94ec41360796e2160159bdca7dde688d0f\lifecycle-runtime-ktx-2.6.2.aar as it is up-to-date.
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.material\material-ripple-android\1.5.4\84e8cdea74de8ab9e52085f73c7d85ba8b4437d2\material-ripple-release.aar as it is up-to-date.
+Build cache key for JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.foundation\foundation-android\1.5.4\bde1937d88c1a1e541673ec873407c126abb74fb\foundation-release.aar is 91f402aeda2d6ba294ca783e37384da0
+Skipping JetifyTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\modules-2\files-2.1\androidx.compose.foundation\foundation-android\1.5.4\bde1937d88c1a1e541673ec873407c126abb74fb\foundation-release.aar as it is up-to-date.
+Transforming lifecycle-runtime-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-runtime-ktx:2.6.2) with ExtractAarTransform
+Transforming foundation-release.aar (androidx.compose.foundation:foundation-android:1.5.4) with ExtractAarTransform
+Transforming material-ripple-release.aar (androidx.compose.material:material-ripple-android:1.5.4) with ExtractAarTransform
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6b7fdc7ca333114a1cd3a249bc729497\transformed\jetified-foundation-release.aar because:
+  Caching not enabled.
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b12965a64fa9bec6f00d17cc93def473\transformed\jetified-lifecycle-runtime-ktx-2.6.2.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\6b7fdc7ca333114a1cd3a249bc729497\transformed\jetified-foundation-release.aar as it is up-to-date.
+Caching disabled for ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\8886ae3e00156e1b20c787adb59928a0\transformed\jetified-material-ripple-release.aar because:
+  Caching not enabled.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\b12965a64fa9bec6f00d17cc93def473\transformed\jetified-lifecycle-runtime-ktx-2.6.2.aar as it is up-to-date.
+Skipping ExtractAarTransform: C:\Users\user.DESKTOP-89OCUK7\.gradle\caches\transforms-3\8886ae3e00156e1b20c787adb59928a0\transformed\jetified-material-ripple-release.aar as it is up-to-date.
+Transforming lifecycle-runtime-ktx-2.6.2.aar (androidx.lifecycle:lifecycle-runtime-ktx:2.6.2) with AarTransform

@@ -25,6 +25,11 @@ android {
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def ytdlpUrlOverride = project.findProperty("YTDLP_URL_OVERRIDE") ?: ""
+        def ffmpegUrlOverride = project.findProperty("FFMPEG_URL_OVERRIDE") ?: ""
+        buildConfigField "String", "YTDLP_URL_OVERRIDE", "\"${ytdlpUrlOverride}\""
+        buildConfigField "String", "FFMPEG_URL_OVERRIDE", "\"${ffmpegUrlOverride}\""
     }
 
     buildTypes {
@@ -45,6 +50,7 @@ android {
 
     buildFeatures {
         compose true
+        buildConfig true
     }
 
     composeOptions {
@@ -71,6 +77,10 @@ dependencies {
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+
+    // Archive handling for tar.xz
+    implementation 'org.tukaani:xz:1.9'
+    implementation 'org.apache.commons:commons-compress:1.25.0'
 
     // Debug
     debugImplementation 'androidx.compose.ui:ui-tooling'

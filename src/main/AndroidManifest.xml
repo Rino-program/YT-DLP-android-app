@@ -14,6 +14,10 @@
     
     <!-- 通知権限（Android 13以上用） -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    
+    <!-- フォアグラウンドサービス権限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <application
         android:allowBackup="true"
@@ -39,6 +43,12 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        
+        <!-- ダウンロードサービス -->
+        <service
+            android:name=".service.DownloadService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
 
     </application>
 

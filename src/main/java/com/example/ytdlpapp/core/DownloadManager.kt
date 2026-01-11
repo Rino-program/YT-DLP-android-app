@@ -5,6 +5,7 @@ import android.os.Environment
 import android.util.Log
 import com.example.ytdlpapp.model.DownloadOptions
 import com.example.ytdlpapp.model.DownloadState
+import com.example.ytdlpapp.model.OutputFormat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,9 +13,10 @@ import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
+import java.io.RandomAccessFile
 
 /**
- * ダウンロード処理を管理
+ * yt-dlpを使用したダウンロード管理
  */
 class DownloadManager(
     private val context: Context,
@@ -33,6 +35,50 @@ class DownloadManager(
     private var currentProcess: Process? = null
 
     /**
+     * ELFバイナリがPIE(Position Independent Executable)形式かどうかをチェック
+     * PIE形式(e_type: 3 = ET_DYN)の場合のみlinkerで実行可能
+     */
+    private fun isPieExecutable(filePath: String): Boolean {
+        return try {
+            RandomAccessFile(File(filePath), "r").use { raf ->
+                // ELFマジックナンバーをチェック (0x7F 'E' 'L' 'F')
+                val magic = ByteArray(4)
+                raf.read(magic)
+                if (magic[0] != 0x7F.toByte() || magic[1] != 'E'.code.toByte() ||
+                    magic[2] != 'L'.code.toByte() || magic[3] != 'F'.code.toByte()) {
+                    return false
+                }
+                
+                // e_type フィールドを読み取る (オフセット 0x10)
+                raf.seek(0x10)
+                val eType = raf.readShort().toInt() and 0xFFFF
+                // ET_DYN (3) = PIE実行可能ファイルまたは共有オブジェクト
+                eType == 3
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to check if binary is PIE: ${e.message}")
+            false
+        }
+    }
+
+    fun getDefaultOutputDir(): File {
+        val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        return File(downloadDir, "YtDlp").apply { mkdirs() }
+    }
+
+    private fun isYouTubeUrl(url: String): Boolean {
+        return url.contains("youtube.com") || url.contains("youtu.be")
+    }
+
+    private fun isPlaylist(url: String): Boolean {
+        return url.contains("list=")
+    }
+
+    private fun appendLog(text: String) {
+        _logOutput.value += text
+    }
+
+    /**
      * ダウンロードを実行
      */
     suspend fun download(
@@ -41,32 +87,133 @@ class DownloadManager(
     ): Result<String> = withContext(Dispatchers.IO) {
         try {
             val ytdlpPath = binaryManager.getYtdlpPath()
-                ?: return@withContext Result.failure(Exception("yt-dlp がインストールされていません"))
+            if (ytdlpPath == null) {
+                val error = "yt-dlp がインストールされていません"
+                _downloadState.value = DownloadState.Error(error)
+                appendLog("✗ エラー: $error\n")
+                return@withContext Result.failure(Exception(error))
+            }
+
+            val ytdlpFile = File(ytdlpPath)
+            if (!ytdlpFile.exists()) {
+                val error = "yt-dlp ファイルが見つかりません: $ytdlpPath"
+                _downloadState.value = DownloadState.Error(error)
+                appendLog("✗ エラー: $error\n")
+                return@withContext Result.failure(Exception(error))
+            }
+
+            
+            // 実行権限を確実に設定（BinaryManagerを経由）
+            Log.d(TAG, "Ensuring executable permission for yt-dlp...")
+            if (!ytdlpFile.canExecute()) {
+                Log.w(TAG, "yt-dlp lacks execution permission, requesting BinaryManager to fix...")
+                // BinaryManagerのsetExecutablePermissionを呼び出すためのワークアラウンド
+                try {
+                    // Os.chmod を直接使用（Android 6.0+）
+                    android.system.Os.chmod(ytdlpPath, 0x1ED) // 0755
+                    Log.d(TAG, "Applied chmod 0755 via Os.chmod")
+                } catch (e: Exception) {
+                    Log.w(TAG, "Os.chmod failed, trying 0777: ${e.message}")
+                    try {
+                        android.system.Os.chmod(ytdlpPath, 0x1FF) // 0777
+                    } catch (e2: Exception) {
+                        Log.e(TAG, "Os.chmod 0777 also failed: ${e2.message}")
+                    }
+                }
+                
+                // Java APIでも試行
+                ytdlpFile.setExecutable(true, false)
+                ytdlpFile.setReadable(true, false)
+                ytdlpFile.setWritable(true, false)
+            }
+            
+            // 古いchmodコード（後方互換性のため残す）
+            try {
+                val chmodResult = Runtime.getRuntime().exec(arrayOf("chmod", "777", ytdlpPath))
+                chmodResult.waitFor()
+                Log.d(TAG, "Pre-execution chmod exit code: ${chmodResult.exitValue()}")
+            } catch (e: Exception) {
+                Log.w(TAG, "Pre-execution chmod failed: ${e.message}")
+            }
+
+            if (!ytdlpFile.canExecute()) {
+                val error = "yt-dlp を実行できません (Permission denied)。バイナリ管理で yt-dlp を再インストールしてください。"
+                _downloadState.value = DownloadState.Error(error)
+                appendLog("✗ エラー: $error\n")
+                appendLog("パス: ${ytdlpFile.absolutePath} (canExecute=${ytdlpFile.canExecute()}, canRead=${ytdlpFile.canRead()}, canWrite=${ytdlpFile.canWrite()})\n")
+                return@withContext Result.failure(Exception(error))
+            }
+            
+            Log.d(TAG, "yt-dlp executable check: canExecute=${ytdlpFile.canExecute()}, canRead=${ytdlpFile.canRead()}")
 
             // 出力ディレクトリ
-            val outputDir = File(
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                "YtDlp"
-            ).also { it.mkdirs() }
+            val outputDir = if (options.outputDir.isNotBlank()) {
+                File(options.outputDir).apply { mkdirs() }
+            } else {
+                getDefaultOutputDir()
+            }
+
+            // FFmpegパスを取得
+            val ffmpegPath = binaryManager.getFfmpegPath()
+
+            Log.d(TAG, "Starting download: $url")
+            Log.d(TAG, "Output directory: ${outputDir.absolutePath}")
+            Log.d(TAG, "yt-dlp path: $ytdlpPath")
+            Log.d(TAG, "ffmpeg path: $ffmpegPath")
 
             _downloadState.value = DownloadState.Downloading(0)
             _logOutput.value = ""
 
-            // コマンドを構築
-            val command = buildCommand(ytdlpPath, url, outputDir, options)
-            Log.d(TAG, "Command: ${command.joinToString(" ")}")
-            appendLog("実行コマンド: ${command.joinToString(" ")}\n")
+            // コマンドを構築（引数リスト）
+            val args = buildArgs(ytdlpPath, url, outputDir, options, ffmpegPath)
+            
+            appendLog("=== ダウンロード開始 ===\n")
+            appendLog("URL: $url\n")
+            appendLog("出力先: ${outputDir.absolutePath}\n")
+            appendLog("コマンド: ${args.joinToString(" ")}\n\n")
 
-            // プロセスを実行
+            // Android 10+ W^X制限対応: リンカー経由で実行
+            // /system/bin/linker64 <binary> <args...>
+            val linker = if (android.os.Build.SUPPORTED_64_BIT_ABIS.isNotEmpty()) {
+                "/system/bin/linker64"
+            } else {
+                "/system/bin/linker"
+            }
+            
+            val command: List<String>
+            val executionMode: String
+            
+            // まずリンカー経由で試行（Android 10+対応）
+            if (File(linker).exists()) {
+                // linker64 /path/to/yt-dlp arg1 arg2 ...
+                command = listOf(linker) + args
+                executionMode = "linker wrapper ($linker)"
+                Log.d(TAG, "Using linker wrapper execution")
+            } else {
+                // フォールバック: sh -c経由
+                Log.d(TAG, "Linker not found, falling back to shell wrapper")
+                val shellCommand = args.joinToString(" ") { arg ->
+                    "'" + arg.replace("'", "'\\''") + "'"
+                }
+                command = listOf("sh", "-c", shellCommand)
+                executionMode = "shell wrapper (sh -c)"
+            }
+
             val processBuilder = ProcessBuilder(command)
-                .directory(outputDir)
+                .directory(context.filesDir) // 作業ディレクトリはアプリ内部
                 .redirectErrorStream(true)
 
-            // 環境変数を設定（ffmpegパス）
-            binaryManager.getFfmpegPath()?.let { ffmpegPath ->
-                val ffmpegDir = File(ffmpegPath).parentFile?.absolutePath
-                processBuilder.environment()["PATH"] = "$ffmpegDir:${processBuilder.environment()["PATH"]}"
-            }
+            // 環境変数を設定
+            val env = processBuilder.environment()
+            env["HOME"] = context.filesDir.absolutePath
+            env["TMPDIR"] = context.cacheDir.absolutePath
+            env["PATH"] = "${File(ytdlpPath).parent}:/system/bin:/system/xbin:/system/bin"
+            env["LD_LIBRARY_PATH"] = "/system/lib64:/system/lib"
+            
+            Log.d(TAG, "Environment: HOME=${env["HOME"]}, TMPDIR=${env["TMPDIR"]}, PATH=${env["PATH"]}")
+
+            Log.d(TAG, "Executing command: ${command.joinToString(" ")}")
+            appendLog("実行モード: $executionMode\n\n")
 
             currentProcess = processBuilder.start()
             val reader = BufferedReader(InputStreamReader(currentProcess!!.inputStream))
@@ -75,7 +222,7 @@ class DownloadManager(
 
             reader.forEachLine { line ->
                 appendLog(line + "\n")
-                Log.d(TAG, line)
+                Log.d(TAG, "yt-dlp: $line")
 
                 // 進捗を解析
                 parseProgress(line)?.let { progress ->
@@ -93,19 +240,20 @@ class DownloadManager(
                         lastFilePath = it.trim().removeSuffix("\"")
                     }
                 }
-
-                // 後処理中
-                if (line.contains("[ExtractAudio]") || line.contains("[Merger]") || line.contains("[ffmpeg]")) {
-                    _downloadState.value = DownloadState.Processing(
-                        if (line.contains("[ExtractAudio]")) "音声を抽出中..."
-                        else if (line.contains("[Merger]")) "動画を結合中..."
-                        else "後処理中..."
-                    )
+                
+                // 処理中のステータス
+                if (line.contains("[download]") && line.contains("100%")) {
+                    _downloadState.value = DownloadState.Processing("ファイルを処理中...")
+                }
+                if (line.contains("[Merger]") || line.contains("[ExtractAudio]")) {
+                    _downloadState.value = DownloadState.Processing("変換中...")
                 }
             }
 
             val exitCode = currentProcess!!.waitFor()
             currentProcess = null
+
+            Log.d(TAG, "Process exited with code: $exitCode")
 
             if (exitCode == 0) {
                 val filePath = lastFilePath ?: outputDir.absolutePath
@@ -127,83 +275,107 @@ class DownloadManager(
         }
     }
 
-    /**
-     * ダウンロードをキャンセル
-     */
-    fun cancel() {
-        currentProcess?.destroy()
-        currentProcess = null
-        _downloadState.value = DownloadState.Error("キャンセルされました")
-    }
-
-    /**
-     * 状態をリセット
-     */
-    fun reset() {
-        _downloadState.value = DownloadState.Idle
-        _logOutput.value = ""
-    }
-
-    private fun buildCommand(
+    private fun buildArgs(
         ytdlpPath: String,
         url: String,
         outputDir: File,
-        options: DownloadOptions
+        options: DownloadOptions,
+        ffmpegPath: String?
     ): List<String> {
-        val cmd = mutableListOf(
-            ytdlpPath,
-            "--no-mtime",
-            "--newline",
-            "-o", "${outputDir.absolutePath}/%(title)s.%(ext)s"
-        )
-
-        // ffmpegパスを指定
-        binaryManager.getFfmpegPath()?.let { ffmpegPath ->
-            cmd.add("--ffmpeg-location")
-            cmd.add(File(ffmpegPath).parentFile?.absolutePath ?: ffmpegPath)
+        val args = mutableListOf<String>()
+        
+        args.add(ytdlpPath)
+        
+        // FFmpegパスを指定（インストールされている場合）
+        if (ffmpegPath != null) {
+            args.addAll(listOf("--ffmpeg-location", File(ffmpegPath).parent ?: ffmpegPath))
         }
-
-        // 音声のみ
-        if (options.audioOnly) {
-            cmd.add("-x")
-            cmd.add("--audio-format")
-            cmd.add(options.audioFormat)
+        
+        // 基本オプション
+        args.addAll(listOf("--no-mtime", "--newline"))
+        
+        // 出力テンプレート
+        val outputTemplate = if (isPlaylist(url)) {
+            val padDigits = options.playlistPadding
+            "${outputDir.absolutePath}/%(playlist_index)0${padDigits}d - %(title)s.%(ext)s"
         } else {
-            // フォーマット指定
-            if (options.format.isNotEmpty() && options.format != "best") {
-                cmd.add("-f")
-                cmd.add(options.format)
+            "${outputDir.absolutePath}/%(title)s.%(ext)s"
+        }
+        args.addAll(listOf("-o", outputTemplate))
+        
+        // プレイリスト設定
+        if (!isPlaylist(url)) {
+            args.add("--no-playlist")
+        }
+        
+        // フォーマット指定
+        when (options.format) {
+            OutputFormat.MP3 -> {
+                args.addAll(listOf("-x", "--audio-format", "mp3", "--audio-quality", "0"))
+            }
+            OutputFormat.M4A -> {
+                args.addAll(listOf("-x", "--audio-format", "m4a", "--audio-quality", "0"))
+            }
+            OutputFormat.BEST -> {
+                // デフォルト（最高品質）
+            }
+            else -> {
+                // 動画フォーマット
+                if (isYouTubeUrl(url) && options.excludeAv1) {
+                    // YouTube用：AV1を除外（互換性重視）
+                    args.addAll(listOf(
+                        "-f", "bestvideo[ext=mp4][vcodec^=avc1]+bestaudio[ext=m4a]/bestvideo[ext=mp4]+bestaudio/best[ext=mp4]/best"
+                    ))
+                }
+                
+                // 出力形式
+                when (options.format) {
+                    OutputFormat.MP4 -> args.addAll(listOf("--merge-output-format", "mp4"))
+                    OutputFormat.WEBM -> args.addAll(listOf("--merge-output-format", "webm"))
+                    OutputFormat.MKV -> args.addAll(listOf("--merge-output-format", "mkv"))
+                    else -> {}
+                }
             }
         }
-
+        
         // カスタムオプション
         if (options.customOptions.isNotBlank()) {
-            cmd.addAll(options.customOptions.split("\\s+".toRegex()).filter { it.isNotBlank() })
+            args.addAll(options.customOptions.split(" ").filter { it.isNotBlank() })
         }
-
-        cmd.add(url)
-        return cmd
+        
+        // URL
+        args.add(url)
+        
+        return args
     }
 
-    private data class ProgressInfo(
+    private data class Progress(
         val percent: Int,
         val speed: String,
         val eta: String
     )
 
-    private fun parseProgress(line: String): ProgressInfo? {
-        // [download]  45.3% of 100.00MiB at  5.00MiB/s ETA 00:10
-        val regex = Regex("""\[download\]\s+(\d+(?:\.\d+)?)%.*?(?:at\s+(\S+))?\s*(?:ETA\s+(\S+))?""")
+    private fun parseProgress(line: String): Progress? {
+        // [download]  45.2% of 10.50MiB at  2.50MiB/s ETA 00:03
+        val regex = Regex("""\[download\]\s+(\d+\.?\d*)%.*?(?:at\s+)?(\d+\.?\d*\s*\w+/s)?.*?(?:ETA\s+)?(\d{2}:\d{2})?""")
         val match = regex.find(line) ?: return null
         
-        return ProgressInfo(
-            percent = match.groupValues[1].toDoubleOrNull()?.toInt() ?: 0,
-            speed = match.groupValues.getOrNull(2) ?: "",
-            eta = match.groupValues.getOrNull(3) ?: ""
-        )
+        val percent = match.groupValues[1].toFloatOrNull()?.toInt() ?: return null
+        val speed = match.groupValues.getOrNull(2)?.trim() ?: ""
+        val eta = match.groupValues.getOrNull(3)?.trim() ?: ""
+        
+        return Progress(percent, speed, eta)
     }
 
-    private fun appendLog(text: String) {
-        _logOutput.value = _logOutput.value + text
+    fun cancel() {
+        currentProcess?.destroyForcibly()
+        currentProcess = null
+        _downloadState.value = DownloadState.Error("キャンセルされました")
+        appendLog("\n⚠ ダウンロードがキャンセルされました\n")
+    }
+
+    fun reset() {
+        _downloadState.value = DownloadState.Idle
+        _logOutput.value = ""
     }
 }
